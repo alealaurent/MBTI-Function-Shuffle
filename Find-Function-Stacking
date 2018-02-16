@@ -1,6 +1,6 @@
 '''
 FINAL Version: Much more efficient, using variables, and I found a way to get opposites!
-Thanks to Do Yeun Kim for improvements on error testing and while loop functionality.
+Thanks to Do Yeun Kim for improvements to error testing and general usability.
 '''
 def find_functions(): 
     a = 1
