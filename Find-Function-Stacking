@@ -1,0 +1,136 @@
+'''
+FINAL Version: Much more efficient, using variables, and I found a way to get opposites!
+Thanks to Do Yeun Kim for improvements on error testing and while loop functionality.
+'''
+def find_functions(): 
+    a = 1
+    while a:
+        types = input("Please enter your MBTI Type in ALL CAPS or input 'exit' to exit the program: ")
+        if types == "exit":
+            a = 0
+            
+        else:
+            #MBTI_types = ["ENFP", "ISTP", "INFJ", "ESTJ", "INFP", "ESTP", "ENFJ", "ISTJ", "ISFP", "ENTP", "INTJ", "ESFJ", "ESFP", "INTP", "ENTJ", "ISFJ"]
+            if len(types) == 4:
+            
+                orientation = ["E", "I"]
+                judging = ["N", "S"]
+                perceiving = ["T", "F"]
+                approach = ["J", "P"]
+
+
+                o = types[0]
+                j = types[1]
+                p = types[2]
+                a = types[3]
+
+
+                J = judging
+                P = perceiving
+
+
+                #Check valid input
+                #if o not in orientation or j not in judging or p not in perceiving or a not in approach:
+                if not (o in orientation and j in judging and p in perceiving and a in approach):
+                    print("Invalid type.  Please enter a 4-letter Myers-Briggs type. \n")
+
+                else:
+
+                    #Determine dominant:
+                        #Look at a. If a is "J", choose j.  If a is "P", choose p.
+                            #In other words, choose the value that corresponds with a.
+                        #Look at o.  Write o in lower case next to the first letter.
+
+
+                    dominant = eval(a.lower()) + o.lower()
+
+                    #Determine auxiliary:
+                        #Look at a. Choose the opposite of a.
+                    for a_type in approach:
+                        if a != a_type:
+                            opp_a = a_type
+
+                        #Look at o. Add the opposite of o in lower case. 
+                    for o_type in orientation:
+                        if o != o_type:
+                            opp_o = o_type
+
+                    auxiliary = eval(opp_a.lower()) + opp_o.lower()
+
+                    #Determine tertiary:
+                        #Use opp_a, find its opposite, and add in o. 
+                    for aux_type in eval(opp_a): 
+                        if opp_a != aux_type:
+                            opp_aux = aux_type
+
+                    tertiary = opp_aux + o.lower()
+
+                    #Determine inferior:
+                        #Find the opposite of the dominant function and add in the opposite of the orientation.
+                    for dom_type in eval(a):
+                        if eval(a.lower()) != dom_type:
+                            opp_dom = dom_type
+
+                    inferior = opp_dom + opp_o.lower()
+
+                    print("Function stacking: ", dominant, auxiliary, tertiary, inferior, "\n")
+            else:
+                print("Invalid type.  Please enter a 4-letter Myers-Briggs type. \n")
+ 
+find_functions()
+
+
+'''
+V1: First inefficient try. I realized halfway through that it was pointlessly inefficient because I wasn't using variables and would have to write everything multiple times as 16 nested if statements, in which case I might as well just make a dictionary and essentially write in the correct output for each possible input.
+'''
+def find_functions_v1():
+    types = input("MBTI Type:")
+    
+    #MBTI_types = ["ENFP", "ISTP", "INFJ", "ESTJ", "INFP", "ESTP", "ENFJ", "ISTJ", "ISFP", "ENTP", "INTJ", "ESFJ", "ESFP", "INTP", "ENTJ", "ISFJ"]
+    #for types in MBTI_types:
+
+    orientation = ["E", "I"]
+    J = ["N", "S"]
+    P = ["T", "F"]
+    approach = ["J", "P"]
+    
+    
+    dominant = 0
+    auxiliary = 0
+    tertiary = 0
+    inferior = 0
+    
+    #Determine whether dominant function is P or J 
+    if types.find("J") == 3: #Judging function dominant
+        #Determine dominant orientation
+        if types[0] == "I": #Introverted dominant
+            dominant = types[1] + "i"
+            auxiliary = types[2] + "e"
+            if types[]
+            
+        elif types[0] == "E": #Extroverted dominant
+            dominant = types[1] + "e"
+            auxiliary = types[2] + "i"
+        else: 
+            print("Type Invalid")
+        
+            
+    elif types.find("P") == 3:#Perceiving function dominant
+        #Determine dominant orientation
+        if types[0] == "I": #Introverted dominant
+            dominant = types[2] + "i"
+            auxiliary = types[1] + "e"
+
+        elif types[0] == "E": #Extroverted dominant
+            dominant = types[2] + "e"
+            auxiliary = types[1] + "i"
+        else: 
+            print("Type Invalid")
+        
+    else:
+        print("Type Invalid")
+        
+    print(dominant)
+    print(auxiliary)       
+
+find_functions_v1()    
